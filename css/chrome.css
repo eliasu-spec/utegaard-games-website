@@ -1,0 +1,48 @@
+/* Shared header and footer chrome, safe to load on pages with their own body styles */
+@font-face{font-family:"Fraunces";src:url("../assets/fonts/fraunces-var.woff2") format("woff2");font-weight:300 700;font-style:normal;font-display:swap}
+@font-face{font-family:"Inter";src:url("../assets/fonts/inter-var.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+.site-header,.site-footer{
+  --bg:#07080d;
+  --line:rgba(232,201,140,.14);
+  --line-strong:rgba(232,201,140,.28);
+  --text:#f4efe6;
+  --muted:#b9b0a0;
+  --gold:#e2bd72;
+  --gold-soft:rgba(226,189,114,.12);
+  --wrap:1180px;
+  --serif:"Fraunces",ui-serif,Georgia,"Times New Roman",serif;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  box-sizing:border-box;
+  font-family:var(--sans);
+}
+.site-header *,.site-footer *{box-sizing:border-box}
+.site-header .wrap,.site-footer .wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+.skip{position:absolute;left:-999px;top:12px;z-index:100;background:#e2bd72;color:#111;padding:8px 14px;border-radius:8px;font-weight:600;font-family:var(--sans)}
+.skip:focus{left:12px}
+.site-header{position:sticky;top:0;z-index:50;background:rgba(7,8,13,.92);border-bottom:1px solid rgba(232,201,140,.14);color:#f4efe6}
+.site-header .header-inner{display:flex;align-items:center;gap:28px;height:76px}
+.site-header .brand--logo{display:flex;align-items:center;flex-shrink:0;text-decoration:none}
+.site-header .brand--logo img{display:block;width:auto;height:56px;max-width:none}
+.site-header .nav{display:flex;gap:26px;margin-left:auto}
+.site-header .nav a{color:#b9b0a0;text-decoration:none;font-size:.92rem;font-weight:500;margin:0}
+.site-header .nav a:hover{color:#f4efe6}
+.site-footer{border-top:1px solid rgba(232,201,140,.14);padding:48px 0 56px;background:#07080d;color:#f4efe6;margin:0;font-size:17px}
+.site-footer .footer-inner{display:grid;grid-template-columns:1fr;gap:20px 40px;align-items:center}
+.site-footer .footer-nav{display:flex;flex-wrap:wrap;gap:10px 26px}
+.site-footer .footer-nav a{color:#b9b0a0;text-decoration:none;font-size:.9rem;margin:0}
+.site-footer .footer-nav a:hover{color:#e2bd72}
+.site-footer .footer-legal{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin:8px 0 0;padding-top:24px;border-top:1px solid rgba(232,201,140,.14)}
+.site-footer .footer-logo{display:block;text-decoration:none}
+.site-footer .footer-logo img{display:block;width:auto;height:48px;max-width:none}
+.site-footer .footer-legal-text{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px}
+.site-footer .legal-line{margin:0;font-size:.9rem;color:#d9d1c3}
+.site-footer .social{display:flex;align-items:center;gap:8px}
+.site-footer .social a{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;color:#b9b0a0;border:1px solid rgba(232,201,140,.14);text-decoration:none}
+.site-footer .social a:hover{color:#e2bd72;border-color:#e2bd72;background:rgba(226,189,114,.12)}
+.site-footer .social svg{width:16px;height:16px;display:block}
+@media (max-width:980px){.site-header .nav{display:none}}
+@media (max-width:640px){
+  .site-header .header-inner{height:64px}
+  .site-header .brand--logo img{height:44px}
+  .site-footer .footer-logo img{height:40px}
+}
