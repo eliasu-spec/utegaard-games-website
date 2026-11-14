@@ -117,7 +117,10 @@
       <article class="game game--bluffs game--text reveal" id="golf-kart-racer" aria-labelledby="golf-title">
         <p class="game-status">Coming soon</p>
         <h2 id="golf-title">Golf Kart Racer</h2>
-        <!-- The Bluffs logo belongs here (assets/logos/the-bluffs/the_bluffs.png) once a valid copy can be saved from eliasu-spec/golf-kart-racer, branch t3-finish, public/gkart-intro/layers_2048/the_bluffs.png. -->
+        <div class="gkart-intro-frame">
+          <canvas class="gkart-intro" id="gkartIntro" role="img" aria-label="Golf Kart Racing animated logo"></canvas>
+        </div>
+        <!-- The Bluffs logo layer ships inside assets/animations/gkart-intro/ (copied from golf-kart-racer t3-finish public/gkart-intro). -->
       </article>
 
       <article class="game game--pinellas game--text reveal" id="pinellas-cruisin" aria-labelledby="pinellas-title">
@@ -164,5 +167,19 @@
 </footer>
 
 <script src="js/main.js" defer></script>
+<script type="module">
+/* Golf Kart Racer tile: the game's own start-screen intro (GKartIntro from golf-kart-racer t3-finish public/gkart-intro).
+   Plays once, muted, when the tile scrolls into view, then holds on its final frame. Reduced motion shows the final frame. */
+import GKartIntro from "./assets/animations/gkart-intro/player/intro.js";
+const cv = document.getElementById("gkartIntro");
+if (cv) {
+  const intro = new GKartIntro({ canvas: cv, basePath: "assets/animations/gkart-intro/", idleLoop: false });
+  intro.load().then(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { intro.seek(intro.duration); return; }
+    const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { io.disconnect(); intro.play(); } }, { threshold: 0.4 });
+    io.observe(cv);
+  }).catch(() => { cv.closest(".gkart-intro-frame").hidden = true; });
+}
+</script>
 </body>
 </html>
