@@ -72,13 +72,23 @@
         </div>
         <h2 id="everest-title">Everest Chess 3D</h2>
         <p>Chess on a 3D board, with Everest the red panda as your coach and cheerleader.</p>
-        <video class="game-preview" autoplay muted loop playsinline preload="metadata" poster="assets/animations/everest-app-preview-poster.jpg" width="332" height="720" aria-label="Everest Chess 3D gameplay preview">
-          <source src="assets/animations/everest-app-preview.mp4" type="video/mp4">
-          <picture>
-            <source srcset="assets/images/screens/iphone-02-home.webp" type="image/webp">
-            <img src="assets/images/screens/iphone-02-home.jpg" width="720" height="1564" alt="Home screen with Everest the red panda and Play, Learn, and Games with friends buttons" loading="lazy">
+        <div class="game-media">
+          <picture class="game-shot">
+            <source srcset="assets/images/screens/iphone-01-tip-3d-board.webp" type="image/webp">
+            <img src="assets/images/screens/iphone-01-tip-3d-board.jpg" width="720" height="1564" alt="Everest Chess 3D: a 3D chess board with a coaching tip from Everest" loading="lazy">
           </picture>
-        </video>
+          <video class="game-preview" autoplay muted loop playsinline preload="metadata" poster="assets/animations/everest-app-preview-poster.jpg" width="332" height="720" aria-label="Everest Chess 3D gameplay preview">
+            <source src="assets/animations/everest-app-preview.mp4" type="video/mp4">
+            <picture>
+              <source srcset="assets/images/screens/iphone-02-home.webp" type="image/webp">
+              <img src="assets/images/screens/iphone-02-home.jpg" width="720" height="1564" alt="Home screen with Everest the red panda and Play, Learn, and Games with friends buttons" loading="lazy">
+            </picture>
+          </video>
+          <picture class="game-shot">
+            <source srcset="assets/images/screens/iphone-06-wood-board.webp" type="image/webp">
+            <img src="assets/images/screens/iphone-06-wood-board.jpg" width="720" height="1564" alt="Everest Chess 3D: the wooden board theme" loading="lazy">
+          </picture>
+        </div>
         <div class="game-cta">
           <a class="badge-link" href="https://apps.apple.com/us/app/everest-chess-3d/id6826328092" rel="noopener">
             <img src="assets/images/app-store-badge-black-us.svg" width="180" height="60" alt="Download on the App Store">
@@ -95,6 +105,12 @@
           </picture>
         </div>
         <h2 id="furniture-title">Furniture Rebellion</h2>
+        <div class="game-media">
+          <!-- JFR logo goes here, beside the video, once a logo file exists in assets/logos/ (none in the repo as of Nov 13, 2026). -->
+          <video class="game-preview" autoplay muted loop playsinline preload="metadata" poster="assets/animations/jfr-app-preview-poster.jpg" width="332" height="720" aria-label="James Furniture Rebellion gameplay preview">
+            <source src="assets/animations/jfr-app-preview.mp4" type="video/mp4">
+          </video>
+        </div>
         <!-- TODO: add the Furniture Rebellion store or play link here once it ships -->
       </article>
 
@@ -116,14 +132,7 @@
 
 <footer class="site-footer">
   <div class="wrap footer-inner">
-    <div class="footer-brand">
-      <div>
-        <p class="footer-title">Utegaard Games</p>
-        <p class="muted">Developed by Elias Utegaard</p>
-      </div>
-    </div>
     <nav class="footer-nav" aria-label="Footer">
-      <a href="everest-chess-3d.html">Everest Chess 3D</a>
       <a href="support.html">Support</a>
       <a href="mailto:support.utegaardgames@gmail.com">support.utegaardgames@gmail.com</a>
       <a href="privacy.html">Privacy</a>
