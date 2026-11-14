@@ -1,0 +1,1536 @@
+{
+ "version": 4,
+ "title": "Golf Kart Racing game-start intro (v4, RACING enters along the lettering angle, approved e1e2 logo)",
+ "variant": "final",
+ "duration": 4.0,
+ "fps": 60,
+ "skipTime": 3.2,
+ "layerSource": "design",
+ "layerSourceDir": "/workspace/design/golf-kart-racer/logo/layers_e1e2",
+ "referenceLogo": "/workspace/design/golf-kart-racer/logo/final/logo_e1e2_title_2048.png",
+ "referenceLogoSha256": "c5b4e7f4a87f2168abc6c6799c9f12c9c896449bd42504d3434bce49bf696a5b",
+ "stage": {
+  "refW": 1920,
+  "refH": 1080,
+  "logoWidthFrac": 0.62,
+  "maxHeightFrac": 0.8
+ },
+ "logo": {
+  "canvasW": 2048,
+  "canvasH": 1170,
+  "content": {
+   "x": 64,
+   "y": 64,
+   "w": 1920,
+   "h": 1042
+  },
+  "center": {
+   "x": 1024.0,
+   "y": 585.0
+  }
+ },
+ "layerDirs": {
+  "2048": "layers_2048",
+  "1024": "layers_1024"
+ },
+ "easings": {
+  "linear": "p",
+  "easeOutCubic": "1-(1-p)^3",
+  "easeInCubic": "p^3",
+  "easeOutBack": "c3=c1+1; 1+c3*(p-1)^3+c1*(p-1)^2   (param c1, default 1.70158)",
+  "bounceOut": "Penner: n1=7.5625,d1=2.75 piecewise",
+  "springOut": "p>=1?1: 1-exp(-damping*p)*cos(2*pi*freq*p)   (use freq=n+0.25)",
+  "easeSpeedIn": "1-(1-p^b)^a  (a=brake, b=launch); velocity a*b*p^(b-1)*(1-p^b)^(a-1) -> 0 at p=1"
+ },
+ "rules": {
+  "zOrder": "layers[] is stored in DRAW order (z ascending, bottom->top = Design README). Ghosts are drawn directly beneath their own layer.",
+  "progress": "p=clamp((t-start)/(land-start),0,1); value=from+(to-from)*ease_channel(p); hidden when t<start",
+  "alpha": "alpha=from.alpha+(to.alpha-from.alpha)*clamp(p/alphaFrac,0,1)  (linear)",
+  "bounces": "after land: tt=t-land; for each {h,dur}: if tt<dur {y-=h*4*(tt/dur)*(1-tt/dur); break} else tt-=dur   (h in logo px)",
+  "sway": "after land: q=(t-land)/dur in [0,1): rotation+=amp*sin(2*pi*swings*q)*(1-q)",
+  "overshoot": "after land: u=t-land; k=px*easeOutCubic(u/rise) for u<rise, px*(1-easeOutCubic((u-rise)/fall)) for rise<=u<rise+fall (then exactly 0); (x,y)+=k*(cos(dirDeg),-sin(dirDeg))",
+  "stretch": "for each {pivotX,amount,group}: pg=clamp((t-g.start)/(g.land-g.start)); f=1+amount*vel(g.easing,pg)/velmax (velmax sampled at i/400); applied in order AFTER the layer transform as a scale ALONG the path axis u=(cos(angleDeg),-sin(angleDeg)) (screen, y down) about canvas pivot (pivotX,pivotY): q -> o+(q-o)+(f-1)((q-o).u)u; angleDeg=0 is the old x-stretch; f==1 at land",
+  "ghost": "for i=1..count: tg=t-i*lag; draw only if start<tg<land; pose at tg; alpha=main_alpha*ghost.alpha*(1-(i-1)/count)",
+  "shake": "q=(t-time)/dur in [0,1): a=px*(1-q)^2; without dirDeg: dx=0.7*a*cos(2*pi*fx*q+1.1); dy=a*cos(2*pi*fy*q). With dirDeg (v4, th): along=a*cos(2*pi*fx*q); perp=0.35*a*cos(2*pi*fy*q+1.1); dx=along*cos(th)+perp*sin(th); dy=-along*sin(th)+perp*cos(th); px in reference px (x canvasW/1920)",
+  "transform": "point_canvas = canvasCenter + S*(Rot(rotation)*Scale(scale)*(p-pivot) + pivot + (x,y) - logoCenter) + shake + idle; S=stageScale*logoFit",
+  "shine": "source-atop white gradient band; axis u=(sin(angle),cos(angle)); s(t)=lerp(smin-w/2, smax+w/2, linear(t)); alpha=interp(stops)"
+ },
+ "racing": {
+  "start": 1.45,
+  "land": 1.9,
+  "settle": 2.1,
+  "peak": 1.675,
+  "easing": {
+   "name": "easeSpeedIn",
+   "a": 3.0,
+   "b": 2.0
+  },
+  "letterStagger": 0.008,
+  "overshoot": {
+   "px": 14.0,
+   "rise": 0.12,
+   "fall": 0.08
+  },
+  "letterStretch": 0.12,
+  "barStretch": 1.0,
+  "ghost": {
+   "count": 5,
+   "lag": 0.0045,
+   "alpha": 0.3
+  },
+  "shake": {
+   "time": 1.9,
+   "px": 8.0,
+   "dur": 0.065,
+   "fx": 1.5,
+   "fy": 2.0
+  },
+  "pathMode": "baseline",
+  "slantAngleDeg": 8.85,
+  "farLeftAspect": 2.4
+ },
+ "racingPath": {
+  "mode": "baseline",
+  "slantAngleDeg": 8.85,
+  "travelPx": 2999.0,
+  "start": {
+   "x": -2963.3,
+   "y": 461.4
+  },
+  "end": {
+   "x": 0,
+   "y": 0
+  },
+  "exit": "left",
+  "stageLeft": -1066.3,
+  "stageBottom": 1456.0,
+  "wordTop": 500,
+  "wordBottom": 1001,
+  "wordRight": 1837
+ },
+ "measuredAngles": {
+  "A_baseline_deg": 8.85,
+  "B_stem_from_horizontal_deg": 74.76346459235293,
+  "B_stem_lean_from_vertical_deg": 15.24,
+  "method": "A: median of (trimmed line fit through bottoms of N,A fills; same through all RACING letter bottoms except the I bar; cap-line through tops of I,N,A,R; top edge of the cyan streak_bottom swoosh). PCA of the word fill is listed for reference only (biased by italic shear). B: trimmed line fits of the left/right edges of the I bar, N left stem and R left stem (per-row extreme x of the white fill), median."
+ },
+ "racingBars": [
+  "racing_speedlines"
+ ],
+ "drawOrder": [
+  "bg_plate",
+  "streak_bottom",
+  "streak_top",
+  "checker_flag",
+  "racing_g",
+  "racing_n",
+  "racing_i",
+  "racing_c",
+  "racing_speedlines",
+  "racing_a",
+  "racing_r",
+  "kart_t",
+  "kart_k",
+  "kart_a",
+  "kart_r",
+  "golf_g",
+  "golf_o",
+  "golf_l",
+  "golf_f",
+  "the_bluffs",
+  "palm"
+ ],
+ "layers": [
+  {
+   "name": "bg_plate",
+   "png": "bg_plate.png",
+   "rect": {
+    "x": 66,
+    "y": 189,
+    "w": 1918,
+    "h": 917
+   },
+   "sha256": "2549955439fa5846c411ead7a76d6b1923a0709947be60602bbaf698d0de2d0f",
+   "pivot": {
+    "x": 1025.0,
+    "y": 647.5
+   },
+   "start": 0.0,
+   "land": 0.28,
+   "from": {
+    "x": 0,
+    "y": 0,
+    "scale": 0.9,
+    "rotation": 0,
+    "alpha": 0
+   },
+   "to": {
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "easing": {
+    "default": {
+     "name": "easeOutCubic"
+    },
+    "scale": {
+     "name": "springOut",
+     "damping": 6.0,
+     "freq": 1.25
+    }
+   },
+   "alphaFrac": 0.5,
+   "z": 0
+  },
+  {
+   "name": "streak_bottom",
+   "png": "streak_bottom.png",
+   "rect": {
+    "x": 254,
+    "y": 807,
+    "w": 1387,
+    "h": 257
+   },
+   "sha256": "d4b6afcf89f60920f801750577a4b651493e70f65d9fdfd8df4588aff857242f",
+   "pivot": {
+    "x": 947.5,
+    "y": 935.5
+   },
+   "start": 0.0,
+   "land": 0.3,
+   "from": {
+    "x": -2041,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 0
+   },
+   "to": {
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "easing": {
+    "default": {
+     "name": "easeOutCubic"
+    }
+   },
+   "alphaFrac": 0.2,
+   "z": 1
+  },
+  {
+   "name": "streak_top",
+   "png": "streak_top.png",
+   "rect": {
+    "x": 726,
+    "y": 302,
+    "w": 650,
+    "h": 112
+   },
+   "sha256": "12301f3c6f2e3647a1193c7212fd6948b86e3db52b23b1ec5c3beb59d110a82d",
+   "pivot": {
+    "x": 1051.0,
+    "y": 358.0
+   },
+   "start": 0.05,
+   "land": 0.3,
+   "from": {
+    "x": -1876,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 0
+   },
+   "to": {
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "easing": {
+    "default": {
+     "name": "easeOutCubic"
+    }
+   },
+   "alphaFrac": 0.2,
+   "z": 2
+  },
+  {
+   "name": "checker_flag",
+   "png": "checker_flag.png",
+   "rect": {
+    "x": 1350,
+    "y": 64,
+    "w": 542,
+    "h": 273
+   },
+   "sha256": "797eeea0a4bb66d7e07b254e22e401b9973288f3d65e78ce958804853e7ec5ac",
+   "pivot": {
+    "x": 1621.0,
+    "y": 200.5
+   },
+   "start": 0.25,
+   "land": 0.55,
+   "from": {
+    "x": 700,
+    "y": -737,
+    "scale": 1,
+    "rotation": 6.0,
+    "alpha": 0
+   },
+   "to": {
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "easing": {
+    "default": {
+     "name": "easeOutBack",
+     "c1": 0.9
+    },
+    "rotation": {
+     "name": "bounceOut"
+    }
+   },
+   "alphaFrac": 0.2,
+   "z": 3
+  },
+  {
+   "name": "racing_g",
+   "png": "racing_g.png",
+   "rect": {
+    "x": 1527,
+    "y": 500,
+    "w": 310,
+    "h": 297
+   },
+   "sha256": "e44c74c20b95d2aadb5c2a30aa2fc79a5e939395f87c0ec454fb60568bf9d2c6",
+   "pivot": {
+    "x": 1682.0,
+    "y": 648.5
+   },
+   "start": 1.45,
+   "land": 1.9,
+   "from": {
+    "x": -2963.32,
+    "y": 461.39,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "to": {
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "easing": {
+    "default": {
+     "name": "easeSpeedIn",
+     "a": 3.0,
+     "b": 2.0
+    }
+   },
+   "alphaFrac": 0.001,
+   "ghost": {
+    "count": 5,
+    "lag": 0.0045,
+    "alpha": 0.3
+   },
+   "overshoot": {
+    "px": 14.0,
+    "rise": 0.12,
+    "fall": 0.08,
+    "dirDeg": 8.85
+   },
+   "stretch": [
+    {
+     "pivotX": 1837,
+     "pivotY": 648.5,
+     "angleDeg": 8.85,
+     "amount": 0.12,
+     "group": {
+      "start": 1.45,
+      "land": 1.9,
+      "easing": {
+       "name": "easeSpeedIn",
+       "a": 3.0,
+       "b": 2.0
+      }
+     }
+    }
+   ],
+   "group": "racing",
+   "z": 4
+  },
+  {
+   "name": "racing_n",
+   "png": "racing_n.png",
+   "rect": {
+    "x": 1227,
+    "y": 538,
+    "w": 338,
+    "h": 317
+   },
+   "sha256": "85827157957c65a4c3fb48fb7e25141ad69a6f060c728d9f6cc55cb3093b4dbe",
+   "pivot": {
+    "x": 1396.0,
+    "y": 696.5
+   },
+   "start": 1.458,
+   "land": 1.9,
+   "from": {
+    "x": -2963.32,
+    "y": 461.39,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "to": {
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "easing": {
+    "default": {
+     "name": "easeSpeedIn",
+     "a": 3.0,
+     "b": 2.0
+    }
+   },
+   "alphaFrac": 0.001,
+   "ghost": {
+    "count": 5,
+    "lag": 0.0045,
+    "alpha": 0.3
+   },
+   "overshoot": {
+    "px": 14.0,
+    "rise": 0.12,
+    "fall": 0.08,
+    "dirDeg": 8.85
+   },
+   "stretch": [
+    {
+     "pivotX": 1837,
+     "pivotY": 648.5,
+     "angleDeg": 8.85,
+     "amount": 0.12,
+     "group": {
+      "start": 1.45,
+      "land": 1.9,
+      "easing": {
+       "name": "easeSpeedIn",
+       "a": 3.0,
+       "b": 2.0
+      }
+     }
+    }
+   ],
+   "group": "racing",
+   "z": 5
+  },
+  {
+   "name": "racing_i",
+   "png": "racing_i.png",
+   "rect": {
+    "x": 1124,
+    "y": 590,
+    "w": 161,
+    "h": 281
+   },
+   "sha256": "7613d2c709f39c0e2c6401a15cf156c13bd02f1f036acb1d416c10d2b460b9d9",
+   "pivot": {
+    "x": 1204.5,
+    "y": 730.5
+   },
+   "start": 1.466,
+   "land": 1.9,
+   "from": {
+    "x": -2963.32,
+    "y": 461.39,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "to": {
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "easing": {
+    "default": {
+     "name": "easeSpeedIn",
+     "a": 3.0,
+     "b": 2.0
+    }
+   },
+   "alphaFrac": 0.001,
+   "ghost": {
+    "count": 5,
+    "lag": 0.0045,
+    "alpha": 0.3
+   },
+   "overshoot": {
+    "px": 14.0,
+    "rise": 0.12,
+    "fall": 0.08,
+    "dirDeg": 8.85
+   },
+   "stretch": [
+    {
+     "pivotX": 1837,
+     "pivotY": 648.5,
+     "angleDeg": 8.85,
+     "amount": 0.12,
+     "group": {
+      "start": 1.45,
+      "land": 1.9,
+      "easing": {
+       "name": "easeSpeedIn",
+       "a": 3.0,
+       "b": 2.0
+      }
+     }
+    }
+   ],
+   "group": "racing",
+   "z": 6
+  },
+  {
+   "name": "racing_c",
+   "png": "racing_c.png",
+   "rect": {
+    "x": 901,
+    "y": 604,
+    "w": 281,
+    "h": 287
+   },
+   "sha256": "face6318599da4b06128d57a0665c1c0802547b36fb7e30bffe30d1afccb0d5d",
+   "pivot": {
+    "x": 1041.5,
+    "y": 747.5
+   },
+   "start": 1.474,
+   "land": 1.9,
+   "from": {
+    "x": -2963.32,
+    "y": 461.39,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "to": {
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "easing": {
+    "default": {
+     "name": "easeSpeedIn",
+     "a": 3.0,
+     "b": 2.0
+    }
+   },
+   "alphaFrac": 0.001,
+   "ghost": {
+    "count": 5,
+    "lag": 0.0045,
+    "alpha": 0.3
+   },
+   "overshoot": {
+    "px": 14.0,
+    "rise": 0.12,
+    "fall": 0.08,
+    "dirDeg": 8.85
+   },
+   "stretch": [
+    {
+     "pivotX": 1837,
+     "pivotY": 648.5,
+     "angleDeg": 8.85,
+     "amount": 0.12,
+     "group": {
+      "start": 1.45,
+      "land": 1.9,
+      "easing": {
+       "name": "easeSpeedIn",
+       "a": 3.0,
+       "b": 2.0
+      }
+     }
+    }
+   ],
+   "group": "racing",
+   "z": 7
+  },
+  {
+   "name": "racing_speedlines",
+   "png": "racing_speedlines.png",
+   "rect": {
+    "x": 64,
+    "y": 672,
+    "w": 507,
+    "h": 329
+   },
+   "sha256": "5886ba76a85c022c90af11039aae2bfbe06d655d79b89bb2b3f191261530eeec",
+   "pivot": {
+    "x": 317.5,
+    "y": 836.5
+   },
+   "start": 1.49,
+   "land": 1.9,
+   "from": {
+    "x": -2963.32,
+    "y": 461.39,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "to": {
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "easing": {
+    "default": {
+     "name": "easeSpeedIn",
+     "a": 3.0,
+     "b": 2.0
+    }
+   },
+   "alphaFrac": 0.001,
+   "ghost": {
+    "count": 5,
+    "lag": 0.0045,
+    "alpha": 0.3
+   },
+   "overshoot": {
+    "px": 14.0,
+    "rise": 0.12,
+    "fall": 0.08,
+    "dirDeg": 8.85
+   },
+   "stretch": [
+    {
+     "pivotX": 1837,
+     "pivotY": 648.5,
+     "angleDeg": 8.85,
+     "amount": 0.12,
+     "group": {
+      "start": 1.45,
+      "land": 1.9,
+      "easing": {
+       "name": "easeSpeedIn",
+       "a": 3.0,
+       "b": 2.0
+      }
+     }
+    },
+    {
+     "pivotX": 571,
+     "pivotY": 836.5,
+     "angleDeg": 8.85,
+     "amount": 1.0,
+     "group": {
+      "start": 1.45,
+      "land": 1.9,
+      "easing": {
+       "name": "easeSpeedIn",
+       "a": 3.0,
+       "b": 2.0
+      }
+     }
+    }
+   ],
+   "group": "racing",
+   "z": 8
+  },
+  {
+   "name": "racing_a",
+   "png": "racing_a.png",
+   "rect": {
+    "x": 582,
+    "y": 634,
+    "w": 335,
+    "h": 324
+   },
+   "sha256": "ac4997de7fcf5ccb16d333e560c6c79269bf94d2e7e5d3b2e692fd5857faaa49",
+   "pivot": {
+    "x": 749.5,
+    "y": 796.0
+   },
+   "start": 1.482,
+   "land": 1.9,
+   "from": {
+    "x": -2963.32,
+    "y": 461.39,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "to": {
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "easing": {
+    "default": {
+     "name": "easeSpeedIn",
+     "a": 3.0,
+     "b": 2.0
+    }
+   },
+   "alphaFrac": 0.001,
+   "ghost": {
+    "count": 5,
+    "lag": 0.0045,
+    "alpha": 0.3
+   },
+   "overshoot": {
+    "px": 14.0,
+    "rise": 0.12,
+    "fall": 0.08,
+    "dirDeg": 8.85
+   },
+   "stretch": [
+    {
+     "pivotX": 1837,
+     "pivotY": 648.5,
+     "angleDeg": 8.85,
+     "amount": 0.12,
+     "group": {
+      "start": 1.45,
+      "land": 1.9,
+      "easing": {
+       "name": "easeSpeedIn",
+       "a": 3.0,
+       "b": 2.0
+      }
+     }
+    }
+   ],
+   "group": "racing",
+   "z": 9
+  },
+  {
+   "name": "racing_r",
+   "png": "racing_r.png",
+   "rect": {
+    "x": 322,
+    "y": 670,
+    "w": 332,
+    "h": 331
+   },
+   "sha256": "86ee00a10723623d1effd5794bb23f1146db7d4f371504821e6372a29bdef401",
+   "pivot": {
+    "x": 488.0,
+    "y": 835.5
+   },
+   "start": 1.49,
+   "land": 1.9,
+   "from": {
+    "x": -2963.32,
+    "y": 461.39,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "to": {
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "easing": {
+    "default": {
+     "name": "easeSpeedIn",
+     "a": 3.0,
+     "b": 2.0
+    }
+   },
+   "alphaFrac": 0.001,
+   "ghost": {
+    "count": 5,
+    "lag": 0.0045,
+    "alpha": 0.3
+   },
+   "overshoot": {
+    "px": 14.0,
+    "rise": 0.12,
+    "fall": 0.08,
+    "dirDeg": 8.85
+   },
+   "stretch": [
+    {
+     "pivotX": 1837,
+     "pivotY": 648.5,
+     "angleDeg": 8.85,
+     "amount": 0.12,
+     "group": {
+      "start": 1.45,
+      "land": 1.9,
+      "easing": {
+       "name": "easeSpeedIn",
+       "a": 3.0,
+       "b": 2.0
+      }
+     }
+    }
+   ],
+   "group": "racing",
+   "z": 10
+  },
+  {
+   "name": "kart_t",
+   "png": "kart_t.png",
+   "rect": {
+    "x": 1719,
+    "y": 275,
+    "w": 200,
+    "h": 235
+   },
+   "sha256": "e0c82bbbfdc4e8e3e2374c023ce1846a95267febf6db5f03a10a7f09ed8a68e7",
+   "pivot": {
+    "x": 1819.0,
+    "y": 392.5
+   },
+   "start": 1.22,
+   "land": 1.42,
+   "from": {
+    "x": 1650,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 0
+   },
+   "to": {
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "easing": {
+    "default": {
+     "name": "easeOutBack",
+     "c1": 0.8
+    }
+   },
+   "alphaFrac": 0.2,
+   "ghost": {
+    "count": 3,
+    "lag": 0.012,
+    "alpha": 0.36
+   },
+   "z": 11
+  },
+  {
+   "name": "kart_k",
+   "png": "kart_k.png",
+   "rect": {
+    "x": 1079,
+    "y": 340,
+    "w": 316,
+    "h": 275
+   },
+   "sha256": "6a5c652e4de83f45f3be4f6bcf06880f4915d0c31d426c767e4b4ea79d770fb9",
+   "pivot": {
+    "x": 1237.0,
+    "y": 477.5
+   },
+   "start": 0.95,
+   "land": 1.15,
+   "from": {
+    "x": 1650,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 0
+   },
+   "to": {
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "easing": {
+    "default": {
+     "name": "easeOutBack",
+     "c1": 0.8
+    }
+   },
+   "alphaFrac": 0.2,
+   "ghost": {
+    "count": 3,
+    "lag": 0.012,
+    "alpha": 0.36
+   },
+   "z": 12
+  },
+  {
+   "name": "kart_a",
+   "png": "kart_a.png",
+   "rect": {
+    "x": 1299,
+    "y": 333,
+    "w": 225,
+    "h": 230
+   },
+   "sha256": "ceadc0df1014bdbaafdf076697dbe6f21d7878267bbd51d7bf140f9baaccb651",
+   "pivot": {
+    "x": 1411.5,
+    "y": 448.0
+   },
+   "start": 1.04,
+   "land": 1.24,
+   "from": {
+    "x": 1650,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 0
+   },
+   "to": {
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "easing": {
+    "default": {
+     "name": "easeOutBack",
+     "c1": 0.8
+    }
+   },
+   "alphaFrac": 0.2,
+   "ghost": {
+    "count": 3,
+    "lag": 0.012,
+    "alpha": 0.36
+   },
+   "z": 13
+  },
+  {
+   "name": "kart_r",
+   "png": "kart_r.png",
+   "rect": {
+    "x": 1475,
+    "y": 314,
+    "w": 252,
+    "h": 231
+   },
+   "sha256": "12d31efb691e448f004ba6df527a2c4e0c7d0707c48794929742f40a49e667f7",
+   "pivot": {
+    "x": 1601.0,
+    "y": 429.5
+   },
+   "start": 1.13,
+   "land": 1.33,
+   "from": {
+    "x": 1650,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 0
+   },
+   "to": {
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "easing": {
+    "default": {
+     "name": "easeOutBack",
+     "c1": 0.8
+    }
+   },
+   "alphaFrac": 0.2,
+   "ghost": {
+    "count": 3,
+    "lag": 0.012,
+    "alpha": 0.36
+   },
+   "z": 14
+  },
+  {
+   "name": "golf_g",
+   "png": "golf_g.png",
+   "rect": {
+    "x": 320,
+    "y": 449,
+    "w": 254,
+    "h": 241
+   },
+   "sha256": "18ed7cb96bb3b97d77e38c0675d73d3d91dc20d8b6fa8ecaebf8fe0f44c9d6f4",
+   "pivot": {
+    "x": 447.0,
+    "y": 569.5
+   },
+   "start": 0.38,
+   "land": 0.6,
+   "from": {
+    "x": 0,
+    "y": -1020,
+    "scale": 1,
+    "rotation": -5,
+    "alpha": 0
+   },
+   "to": {
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "easing": {
+    "default": {
+     "name": "easeInCubic"
+    }
+   },
+   "alphaFrac": 0.2,
+   "bounces": [
+    {
+     "h": 26,
+     "dur": 0.1
+    },
+    {
+     "h": 10,
+     "dur": 0.07
+    }
+   ],
+   "z": 15
+  },
+  {
+   "name": "golf_o",
+   "png": "golf_o.png",
+   "rect": {
+    "x": 529,
+    "y": 432,
+    "w": 229,
+    "h": 232
+   },
+   "sha256": "007c55a30acdbdf9c6ae6d79535b735d2fe127ff8d77a9d3368a198579019f30",
+   "pivot": {
+    "x": 643.5,
+    "y": 548.0
+   },
+   "start": 0.48,
+   "land": 0.7,
+   "from": {
+    "x": 0,
+    "y": -994,
+    "scale": 1,
+    "rotation": 5,
+    "alpha": 0
+   },
+   "to": {
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "easing": {
+    "default": {
+     "name": "easeInCubic"
+    }
+   },
+   "alphaFrac": 0.2,
+   "bounces": [
+    {
+     "h": 26,
+     "dur": 0.1
+    },
+    {
+     "h": 10,
+     "dur": 0.07
+    }
+   ],
+   "z": 16
+  },
+  {
+   "name": "golf_l",
+   "png": "golf_l.png",
+   "rect": {
+    "x": 712,
+    "y": 415,
+    "w": 180,
+    "h": 232
+   },
+   "sha256": "e984c77ab5e1716672112b73bf79a658c08d330f2c48917a05fd9f8bc25929b5",
+   "pivot": {
+    "x": 802.0,
+    "y": 531.0
+   },
+   "start": 0.58,
+   "land": 0.8,
+   "from": {
+    "x": 0,
+    "y": -977,
+    "scale": 1,
+    "rotation": -5,
+    "alpha": 0
+   },
+   "to": {
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "easing": {
+    "default": {
+     "name": "easeInCubic"
+    }
+   },
+   "alphaFrac": 0.2,
+   "bounces": [
+    {
+     "h": 26,
+     "dur": 0.1
+    },
+    {
+     "h": 10,
+     "dur": 0.07
+    }
+   ],
+   "z": 17
+  },
+  {
+   "name": "golf_f",
+   "png": "golf_f.png",
+   "rect": {
+    "x": 877,
+    "y": 383,
+    "w": 228,
+    "h": 242
+   },
+   "sha256": "3a2a13d2cb9835a1f34ed16a7c6480379318e2689b23eb44db13b5f2beca0b57",
+   "pivot": {
+    "x": 991.0,
+    "y": 504.0
+   },
+   "start": 0.68,
+   "land": 0.9,
+   "from": {
+    "x": 0,
+    "y": -955,
+    "scale": 1,
+    "rotation": 5,
+    "alpha": 0
+   },
+   "to": {
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "easing": {
+    "default": {
+     "name": "easeInCubic"
+    }
+   },
+   "alphaFrac": 0.2,
+   "bounces": [
+    {
+     "h": 26,
+     "dur": 0.1
+    },
+    {
+     "h": 10,
+     "dur": 0.07
+    }
+   ],
+   "z": 18
+  },
+  {
+   "name": "the_bluffs",
+   "png": "the_bluffs.png",
+   "rect": {
+    "x": 937,
+    "y": 805,
+    "w": 792,
+    "h": 251
+   },
+   "sha256": "de9d8a9f6b639fa7ac1d16cb49c2e67c8dcdc30404c7cd34d857000c4b14e627",
+   "pivot": {
+    "x": 1333.0,
+    "y": 930.5
+   },
+   "start": 2.2,
+   "land": 2.4,
+   "from": {
+    "x": -1929,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 0
+   },
+   "to": {
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "easing": {
+    "default": {
+     "name": "easeOutBack",
+     "c1": 0.9
+    }
+   },
+   "alphaFrac": 0.2,
+   "ghost": {
+    "count": 2,
+    "lag": 0.012,
+    "alpha": 0.22
+   },
+   "z": 19
+  },
+  {
+   "name": "palm",
+   "png": "palm.png",
+   "rect": {
+    "x": 1681,
+    "y": 700,
+    "w": 301,
+    "h": 343
+   },
+   "sha256": "7edeaf9539ac78d73e35ee9f072579f26222758c9efdab07679f040f8739a899",
+   "pivot": {
+    "x": 1768.3,
+    "y": 1032.7
+   },
+   "start": 2.45,
+   "land": 2.6,
+   "from": {
+    "x": 0,
+    "y": 0,
+    "scale": 0.0,
+    "rotation": 0,
+    "alpha": 0
+   },
+   "to": {
+    "x": 0,
+    "y": 0,
+    "scale": 1,
+    "rotation": 0,
+    "alpha": 1
+   },
+   "easing": {
+    "default": {
+     "name": "easeOutBack",
+     "c1": 2.2
+    }
+   },
+   "alphaFrac": 0.3,
+   "sway": {
+    "amp": 5.0,
+    "swings": 2,
+    "dur": 0.5
+   },
+   "z": 20
+  }
+ ],
+ "shakes": [
+  {
+   "time": 1.9,
+   "px": 8.0,
+   "dur": 0.065,
+   "fx": 1.5,
+   "fy": 2.0,
+   "dirDeg": 8.85
+  }
+ ],
+ "shine": {
+  "start": 2.8,
+  "end": 3.2,
+  "angleDeg": 65.0,
+  "width": 430.0,
+  "peakAlpha": 0.62,
+  "stops": [
+   [
+    0.0,
+    0.0
+   ],
+   [
+    0.3,
+    0.45
+   ],
+   [
+    0.5,
+    1.0
+   ],
+   [
+    0.7,
+    0.45
+   ],
+   [
+    1.0,
+    0.0
+   ]
+  ]
+ },
+ "idle": {
+  "start": 3.2,
+  "ampPx": 2.0,
+  "period": 1.6
+ },
+ "hits": [
+  {
+   "name": "streaks_land",
+   "time": 0.3
+  },
+  {
+   "name": "flag_land",
+   "time": 0.55
+  },
+  {
+   "name": "golf_g",
+   "time": 0.6
+  },
+  {
+   "name": "golf_o",
+   "time": 0.7
+  },
+  {
+   "name": "golf_l",
+   "time": 0.8
+  },
+  {
+   "name": "golf_f",
+   "time": 0.9
+  },
+  {
+   "name": "kart_k",
+   "time": 1.15
+  },
+  {
+   "name": "kart_a",
+   "time": 1.24
+  },
+  {
+   "name": "kart_r",
+   "time": 1.33
+  },
+  {
+   "name": "kart_t",
+   "time": 1.42
+  },
+  {
+   "name": "racing_land",
+   "time": 1.9
+  },
+  {
+   "name": "racing_settle",
+   "time": 2.1
+  },
+  {
+   "name": "the_bluffs",
+   "time": 2.4
+  },
+  {
+   "name": "palm",
+   "time": 2.6
+  },
+  {
+   "name": "shine_land",
+   "time": 3.2
+  }
+ ],
+ "audioCues": [
+  {
+   "name": "streaks_whoosh",
+   "time": 0.0,
+   "kind": "whoosh",
+   "sfx": "quick swish 0.3 s"
+  },
+  {
+   "name": "streaks_land",
+   "time": 0.3,
+   "kind": "hit",
+   "sfx": "streak settle"
+  },
+  {
+   "name": "golf_g_drop",
+   "time": 0.38,
+   "kind": "whoosh",
+   "sfx": "short drop-whistle"
+  },
+  {
+   "name": "golf_o_drop",
+   "time": 0.48,
+   "kind": "whoosh",
+   "sfx": "short drop-whistle"
+  },
+  {
+   "name": "flag_land",
+   "time": 0.55,
+   "kind": "hit",
+   "sfx": "flag-flick snap"
+  },
+  {
+   "name": "golf_l_drop",
+   "time": 0.58,
+   "kind": "whoosh",
+   "sfx": "short drop-whistle"
+  },
+  {
+   "name": "golf_g",
+   "time": 0.6,
+   "kind": "hit",
+   "sfx": "impact #1 light thud+clack"
+  },
+  {
+   "name": "golf_f_drop",
+   "time": 0.68,
+   "kind": "whoosh",
+   "sfx": "short drop-whistle"
+  },
+  {
+   "name": "golf_o",
+   "time": 0.7,
+   "kind": "hit",
+   "sfx": "impact #2 pitch up"
+  },
+  {
+   "name": "golf_l",
+   "time": 0.8,
+   "kind": "hit",
+   "sfx": "impact #3"
+  },
+  {
+   "name": "golf_f",
+   "time": 0.9,
+   "kind": "hit",
+   "sfx": "impact #4 a bit bigger"
+  },
+  {
+   "name": "kart_k_whoosh",
+   "time": 0.95,
+   "kind": "whoosh",
+   "sfx": "slide whoosh"
+  },
+  {
+   "name": "kart_a_whoosh",
+   "time": 1.04,
+   "kind": "whoosh",
+   "sfx": "slide whoosh"
+  },
+  {
+   "name": "kart_r_whoosh",
+   "time": 1.13,
+   "kind": "whoosh",
+   "sfx": "slide whoosh"
+  },
+  {
+   "name": "kart_k",
+   "time": 1.15,
+   "kind": "hit",
+   "sfx": "clack"
+  },
+  {
+   "name": "kart_t_whoosh",
+   "time": 1.22,
+   "kind": "whoosh",
+   "sfx": "slide whoosh"
+  },
+  {
+   "name": "kart_a",
+   "time": 1.24,
+   "kind": "hit",
+   "sfx": "clack"
+  },
+  {
+   "name": "kart_r",
+   "time": 1.33,
+   "kind": "hit",
+   "sfx": "clack"
+  },
+  {
+   "name": "kart_t",
+   "time": 1.42,
+   "kind": "hit",
+   "sfx": "clack"
+  },
+  {
+   "name": "racing_whoosh",
+   "time": 1.45,
+   "kind": "whoosh",
+   "sfx": "RACING car-speed-in whoosh begins (off-screen lower-left, along the lettering angle)"
+  },
+  {
+   "name": "racing_peak",
+   "time": 1.675,
+   "kind": "mark",
+   "sfx": "peak speed pass (whoosh crest)"
+  },
+  {
+   "name": "racing_land",
+   "time": 1.9,
+   "kind": "hit",
+   "sfx": "MAIN impact: hard stop, 8 px shake 3-4 frames + sub boom"
+  },
+  {
+   "name": "racing_settle",
+   "time": 2.1,
+   "kind": "hit",
+   "sfx": "small settle tick (overshoot returned to rest)"
+  },
+  {
+   "name": "the_bluffs_whoosh",
+   "time": 2.2,
+   "kind": "whoosh",
+   "sfx": "swoosh"
+  },
+  {
+   "name": "the_bluffs",
+   "time": 2.4,
+   "kind": "hit",
+   "sfx": "pop"
+  },
+  {
+   "name": "palm",
+   "time": 2.6,
+   "kind": "hit",
+   "sfx": "pop + leaf rustle"
+  },
+  {
+   "name": "shine_start",
+   "time": 2.8,
+   "kind": "whoosh",
+   "sfx": "shimmer sweep start (0.4 s)"
+  },
+  {
+   "name": "shine_land",
+   "time": 3.2,
+   "kind": "hit",
+   "sfx": "sparkle end / ring-out starts"
+  }
+ ]
+}
