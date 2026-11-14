@@ -285,3 +285,5 @@ p{margin:0 0 1em}
 /* Golf Kart Racer tile: canvas logo intro */
 .gkart-intro-frame{margin:18px 0 4px;border-radius:16px;overflow:hidden;background:#0c0d13;aspect-ratio:16/9}
 .gkart-intro{display:block;width:100%;height:100%}
+/* Golf Kart tile subtitle under the heading: smaller and fainter */
+.game-subtitle{margin:-6px 0 14px;font-size:.95rem;font-weight:500;letter-spacing:.04em;color:var(--muted);opacity:.75}
