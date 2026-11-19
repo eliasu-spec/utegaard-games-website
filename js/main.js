@@ -52,6 +52,60 @@
     setTimeout(showAll, 2500);
   }
 
+  // Game preview clips. This file never pauses them, and the hero
+  // "play once" change only dropped loop on the studio logo video.
+  // iOS Safari does not start autoplay for a muted playsinline video that
+  // is below the fold (preload=metadata never buffers it), and it does not
+  // retry when the card scrolls into view. Everest is in the first screen,
+  // so it plays; James Furniture Rebellion stays on its poster. Low Power
+  // Mode refuses play() until a gesture, and the poster stays until a tap.
+  var previews = Array.prototype.slice.call(document.querySelectorAll("video.game-preview"));
+  var playPreview = function (video) {
+    if (!video) return;
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
+    if (!video.paused && !video.ended) return;
+    if (video.getAttribute("preload") !== "auto") video.preload = "auto";
+    if (video.readyState === 0 && video.networkState === 0) video.load();
+    var pending = video.play();
+    if (pending && typeof pending.catch === "function") pending.catch(function () {});
+  };
+  var previewInView = function (video) {
+    var rect = video.getBoundingClientRect();
+    var vh = window.innerHeight || doc.clientHeight;
+    return Math.min(rect.bottom, vh) - Math.max(rect.top, 0) > 8;
+  };
+  if (previews.length) {
+    if ("IntersectionObserver" in window) {
+      var videoIo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) playPreview(entry.target);
+        });
+      }, { threshold: 0.25 });
+      previews.forEach(function (video) { videoIo.observe(video); });
+    } else {
+      previews.forEach(playPreview);
+    }
+    previews.forEach(function (video) {
+      var onTap = function () { playPreview(video); };
+      video.addEventListener("click", onTap);
+      video.addEventListener("touchend", onTap);
+    });
+    var unlocked = false;
+    var onFirstGesture = function () {
+      if (unlocked) return;
+      unlocked = true;
+      previews.forEach(function (video) { if (previewInView(video)) playPreview(video); });
+      window.removeEventListener("pointerup", onFirstGesture, true);
+      window.removeEventListener("touchend", onFirstGesture, true);
+    };
+    window.addEventListener("pointerup", onFirstGesture, true);
+    window.addEventListener("touchend", onFirstGesture, true);
+  }
+
   // Screenshot gallery arrows
   var gallery = document.querySelector(".gallery");
   document.querySelectorAll(".gbtn").forEach(function (btn) {
